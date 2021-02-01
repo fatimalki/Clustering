@@ -1,3 +1,4 @@
+#Importation of necessary librairies
 from operator import itemgetter
 from sklearn.feature_selection import SelectKBest, chi2
 from sklearn.pipeline import make_pipeline
@@ -28,6 +29,7 @@ import math
 from scipy.spatial import distance
 import json
 
+#Mapping the treebank tags to WordNet part of speech names
 def get_wordnet_pos(treebank_tag):
 
     if treebank_tag.startswith('J'):
@@ -41,20 +43,23 @@ def get_wordnet_pos(treebank_tag):
     else:
         return ''
 
+#Lemmatization 
 lemmatiser = WordNetLemmatizer()
 
-
+#Output file name
 output_file("test.html")
 
+#Precising the file language
 stemmer = nltk.SnowballStemmer("english")
 
+#Opening the input file including the short texts that we seek to cluster and reading it in a variable "input_text"
 with open("Shorttexts.txt","r") as f:
 	input_text = f.readlines()
 f.close()
 
 input_data = []
 
-
+#Converting the text full of strings into a list of substrings known as tokens
 def tokenize(text):
     lemmatized_words = []
     text = text.lower()
@@ -75,20 +80,38 @@ def tokenize(text):
         count+=1
     return lemmatized_words
 
-
+#Removing the \n from each row in the input_text
 for row in input_text:
     row = row.strip("\n")
     input_data.append(row)
 
+
+#Transforming a given text into a vector on the basis of the frequency (count) of each word that occurs in the entire text.
+#instantiate CountVectorizer()
+#Return : int
 count_vectorizer = CountVectorizer(encoding="latin-1", stop_words="english", tokenizer=tokenize, analyzer='word')
+
+#Tokenizing documents, learning the vocabulary and inversing document frequency weightings
+##instantiate  TfidfVectorizer()
+#Return : float / a score 
 Tfidf_vectorizer = TfidfVectorizer(encoding="latin-1", use_idf=True, stop_words="english", tokenizer=tokenize, analyzer='word')
 vectorizer = TfidfVectorizer(encoding="latin-1", use_idf=True, stop_words="english", tokenizer=tokenize, analyzer='word')
+
+#Computing the scores for the words in the document
 input_freq = Tfidf_vectorizer.fit_transform(input_data).toarray()
 input_vector = Tfidf_vectorizer.fit_transform(input_data)
 
+#KMEANS MODEL
+#Select number of cluster
 num_clusters = 5
+
+#Instantiate the kmeans model with n_clusters=num_clusters
 clustering_model = KMeans(n_clusters=num_clusters)
+
+#Fit the model
 clustering_model.fit(input_vector)
+
+#Predict the clusters
 clusters = clustering_model.fit_predict(input_vector)
 
 count=1
