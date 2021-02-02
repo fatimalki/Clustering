@@ -29,6 +29,10 @@ You can learn more on K-Means at https://datasciencegeeks.net/2016/03/16/underst
 
 ## Dependencies
 
+You need Python 3 to run the packages. Other dependencies can be found in the requirement file:
+
+Requirements.txt
+
 
 
 
