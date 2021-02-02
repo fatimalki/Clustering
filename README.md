@@ -13,13 +13,21 @@ The data used in the project is the text file "Shorttexts.txt". We assume that e
 
 ## Data preparation
 
+## Natural Language Processing (NLP)
+
+Natural Language Processing (NLP) is a way of processing textual information into numerical summaries, features, or models.
+
 ## Clustering algorithm
 
 The project implements the K-Means algorithm for clustering. This algorithm iteratively recomputes the location of k centroids (k is the number of clusters, defined beforehand), that aim to classify the data. Points are labelled to the closest centroid, with each iteration updating the centroids location based on all the points labelled with that value.
 
+## Documentation
+
 You can learn more on K-Means at https://datasciencegeeks.net/2016/03/16/understanding-k-means-clustering/
 
 ## Results
+
+## Dependencies
 
 
 
