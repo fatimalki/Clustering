@@ -114,22 +114,34 @@ clustering_model.fit(input_vector)
 #Predict the clusters
 clusters = clustering_model.fit_predict(input_vector)
 
+
+
 count=1
+
+#Create a default dict to avoid getting errors if an inexisting key is called
 cluster_text = defaultdict(list)
+
+#Instantite a list
 docs_list =[]
 
+#Print the clusters
 for cluster in clusters:
     print cluster
 
+#Get the number of lines
 count_data = len(input_data)
 
+#Create the clusters ; adding the documents id in each corresponding cluster
 for i in range(count_data):
     cluster_id = clusters[i]
     doc_id = i+1
     cluster_text[cluster_id].append(doc_id)
 
+#Instantiate a default dict for the top terms in a cluster
 cluster_terms = defaultdict(list)
 
+
+#Get the terms that are most recurrent in each cluster so in each groupe of documents
 print("Top terms per cluster:")
 centroids = clustering_model.cluster_centers_
 order_centroids = centroids.argsort()[:, ::-1]
@@ -141,6 +153,7 @@ for i in range(num_clusters):
         cluster_terms[i].append((ind,terms[ind]))
     print
 
+#Instantiate a default dict for the frequence of terms in a cluster
 cluster_freq = defaultdict(dict)
 
 
@@ -155,6 +168,7 @@ for cluster_id, terms in cluster_terms.items():
         term_freq[word] = term_count
     cluster_freq[cluster_id] = term_freq
 
+#Creating a json file and writing the results in it
 with open('cluster_freq.json', 'w') as f:
     json.dump(cluster_freq, f)
 
@@ -186,7 +200,7 @@ for i in range(num_clusters):
     answers[i].append(('worst',input_data[doc_id-1] ))
 
 
-
+#Creating a text file and writing the final output in it
 with open("answers.txt" , "w") as f:
     for answers in answers.values():
         for answer in answers:
