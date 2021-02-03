@@ -16,11 +16,11 @@ This is a Natural Language Processing (NLP) project. NLP is a way of processing 
 
 Data Preparation is a crucial step in NLP projects. Hence, the input data needs to be cleaned and preprocessed and transformed before the modelisation step. The major preparations used on input data are :
 
-1- Convertion of text to lowercase.
-2- Removing return to line.
-3- Replacing all kind of spaces by a character space.
-4- Tokenization : breaking up the strings into a list of words.
-5- Lemmatization (text normalization) : shortening words back to their root form to remove noise in the data.
+1- Convertion of text to lowercase.  
+2- Removing return to line.  
+3- Replacing all kind of spaces by a character space.  
+4- Tokenization : breaking up the strings into a list of words.  
+5- Lemmatization (text normalization) : shortening words back to their root form to remove noise in the data.  
 6- Transforming a given text into a vector on the basis of the frequency of each word that occurs in the entire text (TF-IDF).
 
 ## Clustering algorithm
