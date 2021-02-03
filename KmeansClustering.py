@@ -119,7 +119,7 @@ cluster_text = defaultdict(list)
 docs_list =[]
 
 for cluster in clusters:
-    print cluster
+    print(cluster)
 
 count_data = len(input_data)
 
@@ -135,9 +135,9 @@ centroids = clustering_model.cluster_centers_
 order_centroids = centroids.argsort()[:, ::-1]
 terms = Tfidf_vectorizer.get_feature_names()
 for i in range(num_clusters):
-    print "Cluster %d:" % i,
+    print("Cluster %d:" % i)
     for ind in order_centroids[i, :50]:
-        print ' %s' % terms[ind],
+        print(' %s' % terms[ind])
         cluster_terms[i].append((ind,terms[ind]))
     print
 
