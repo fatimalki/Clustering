@@ -1,0 +1,15 @@
+#The starting requires the following dependencies
+sklearn
+matplotlib 
+numpy 
+operator 
+bokeh
+nltk
+gensim
+re
+nltk 
+collections 
+math
+scipy
+json
+jupyter
